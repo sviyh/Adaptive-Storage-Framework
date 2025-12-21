@@ -179,7 +179,7 @@ public class ContentsITab : ITab_ContentsBase
 
 			hasAnyStoredThing = true;
 
-			if (!filter.Matches((thing.GetInnerIfMinified() ?? thing).def))
+			if (!filter.Matches((thing.GetInnerIfMinified() ?? thing).LabelCap))
 				continue;
 
 			if (scrollView.CanCull(thingRowHeight, curY))
