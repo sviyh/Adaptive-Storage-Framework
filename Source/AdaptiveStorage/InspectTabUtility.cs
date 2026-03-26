@@ -43,29 +43,34 @@ public static class InspectTabUtility
 	public static void TryOpen(ISelectable selectable) // for automatic tab opening, similar to LWM's
 		// https://github.com/lilwhitemouse/RimWorld-LWM.DeepStorage/blob/master/DeepStorage/Deep_Storage_ITab.cs#L237-L306
 	{
-		if (!AdaptiveStorageFrameworkSettings.AutomaticallyOpenContentsTab
-			|| Find.Selector.NumSelected > 1
-			|| selectable.GetInspectTabs() is not { } inspectTabs)
-		{
+		if (!AdaptiveStorageFrameworkSettings.AutomaticallyOpenContentsTab || selectable.GetInspectTabs() is not { } inspectTabs)
 			return;
-		}
 
 		using var tabs = inspectTabs.ToPooledList();
 
-		if (tabs.Count == 0
-			|| tabs.Exists(static tab
-				=> InspectPaneUtility.IsOpen(tab, (MainTabWindow_Inspect)MainButtonDefOf.Inspect.TabWindow)))
+		if (tabs.Count == 0)
+			return;
+
+		var tabAlreadyOpened = tabs.Exists(static tab => InspectPaneUtility.IsOpen(tab, (MainTabWindow_Inspect)MainButtonDefOf.Inspect.TabWindow));
+		if (tabAlreadyOpened)
+			return;
+
+		var groupTab = AdaptiveStorageFrameworkSettings.PreferGroupTabWhenGrouped
+			? tabs.Find(static tab => tab is GroupContentsITab)
+			: null;
+
+		if (groupTab != null && groupTab.IsVisible)
 		{
+			InspectPaneUtility.OpenTab(groupTab.GetType());
 			return;
 		}
 
 		var selectedContentsTab = AdaptiveStorageFrameworkSettings.ContentsTab;
+		var selectedContentsTabExists = selectedContentsTab is not null && tabs.Contains(selectedContentsTab) && selectedContentsTab.IsVisible;
 
-		var tab = selectedContentsTab is null
-			|| !tabs.Contains(selectedContentsTab)
-			|| !selectedContentsTab.IsVisible
-				? tabs.Find(static tab => tab is ITab_Storage)
-				: selectedContentsTab;
+		var tab = selectedContentsTabExists
+					? selectedContentsTab
+					: tabs.Find(static tab => tab is ITab_Storage);
 
 		if (tab is null)
 			return;
