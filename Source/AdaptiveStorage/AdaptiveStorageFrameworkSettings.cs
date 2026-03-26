@@ -185,7 +185,7 @@ public class AdaptiveStorageFrameworkSettings : ModSettings
 	{
 		Scribe_Values.Look(ref _contentsTabTypeName, nameof(ContentsTabType));
 		Scribe_Values.Look(ref _automaticallyOpenContentsTab, nameof(AutomaticallyOpenContentsTab), true);
-		Scribe_Values.Look(ref _preferGroupTabWhenGrouped, nameof(PreferGroupTabWhenGrouped), true);
+		Scribe_Values.Look(ref _preferGroupTabWhenGrouped, nameof(PreferGroupTabWhenGrouped));
 		Scribe_Values.Look(ref _contentLabelStyleName, nameof(ContentLabelStyle));
 		Scribe_Values.Look(ref _hideLabelsUntilMouseOver, nameof(HideLabelsUntilMouseOver));
 		Scribe_Values.Look(ref _hideLabelsWhenZoomedOut, nameof(HideLabelsWhenZoomedOut), true);
