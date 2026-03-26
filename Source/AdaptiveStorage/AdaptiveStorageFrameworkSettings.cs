@@ -33,6 +33,8 @@ public class AdaptiveStorageFrameworkSettings : ModSettings
 
 	public static bool AutomaticallyOpenContentsTab => _automaticallyOpenContentsTab;
 
+	public static bool PreferGroupTabWhenGrouped => _preferGroupTabWhenGrouped;
+
 	public static bool HideLabelsUntilMouseOver => _hideLabelsUntilMouseOver;
 
 	public static bool HideLabelsWhenZoomedOut => _hideLabelsWhenZoomedOut;
@@ -49,6 +51,7 @@ public class AdaptiveStorageFrameworkSettings : ModSettings
 
 	private static bool
 		_automaticallyOpenContentsTab = true,
+		_preferGroupTabWhenGrouped,
 		_hideLabelsWhenZoomedOut = true,
 		_hideLabelsUntilMouseOver;
 
@@ -113,7 +116,13 @@ public class AdaptiveStorageFrameworkSettings : ModSettings
 		listing.Gap();
 		listing.CheckboxLabeled(Strings.Translated.ASF_AutomaticallyOpenContentsTab,
 			ref _automaticallyOpenContentsTab, Strings.Translated.ASF_AutomaticallyOpenContentsTabDescription);
-		
+
+		if (_automaticallyOpenContentsTab)
+		{
+			listing.CheckboxLabeled(Strings.Translated.ASF_PreferGroupTabWhenGrouped,
+				ref _preferGroupTabWhenGrouped, Strings.Translated.ASF_PreferGroupTabWhenGroupedDescription);
+		}
+
 		listing.Gap();
 		listing.Label(Strings.Translated.ASF_DefaultLabelStyleSetting,
 			tooltip: Strings.Translated.ASF_DefaultLabelStyleDescription);
@@ -176,6 +185,7 @@ public class AdaptiveStorageFrameworkSettings : ModSettings
 	{
 		Scribe_Values.Look(ref _contentsTabTypeName, nameof(ContentsTabType));
 		Scribe_Values.Look(ref _automaticallyOpenContentsTab, nameof(AutomaticallyOpenContentsTab), true);
+		Scribe_Values.Look(ref _preferGroupTabWhenGrouped, nameof(PreferGroupTabWhenGrouped));
 		Scribe_Values.Look(ref _contentLabelStyleName, nameof(ContentLabelStyle));
 		Scribe_Values.Look(ref _hideLabelsUntilMouseOver, nameof(HideLabelsUntilMouseOver));
 		Scribe_Values.Look(ref _hideLabelsWhenZoomedOut, nameof(HideLabelsWhenZoomedOut), true);

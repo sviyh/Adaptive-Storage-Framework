@@ -89,6 +89,8 @@ public static class Strings
 			ASF_StorageCapacityDescriptionStacksPerCell,
 			ASF_AutomaticallyOpenContentsTab,
 			ASF_AutomaticallyOpenContentsTabDescription,
+			ASF_PreferGroupTabWhenGrouped,
+			ASF_PreferGroupTabWhenGroupedDescription,
 			ASF_HideLabelsZoomSetting,
 			ASF_HideLabelsZoomDescription,
 			ASF_HideLabelsMouseOverSetting,

@@ -13,6 +13,8 @@
 	<ASF_StorageCapacityDescriptionStacksPerCell>The maximum number of stacks fitting into this storage building for all cells combined.\n\n{sizeX} * {sizeZ} cells with a maximum capacity of {maxItemsInCell} stacks per cell.</ASF_StorageCapacityDescriptionStacksPerCell>
 	<ASF_AutomaticallyOpenContentsTab>Automatically open contents tab</ASF_AutomaticallyOpenContentsTab>
 	<ASF_AutomaticallyOpenContentsTabDescription>Selecting a storage building automatically opens its Contents tab with this enabled, or storage settings when empty.</ASF_AutomaticallyOpenContentsTabDescription>
+	<ASF_PreferGroupTabWhenGrouped>Prefer group content tab if available</ASF_PreferGroupTabWhenGrouped>
+	<ASF_PreferGroupTabWhenGroupedDescription>When a storage building is part of a storage group, automatically open the group contents tab. It will take precedence over the content tab of a singular building.</ASF_PreferGroupTabWhenGroupedDescription>
 	<ASF_HideLabelsZoomSetting>Hide labels when zoomed out</ASF_HideLabelsZoomSetting>
 	<ASF_HideLabelsZoomDescription>Affects labels shown on the map, like [ count ] or Item xY. Only show them at a close zoom level when enabled.</ASF_HideLabelsZoomDescription>
 	<ASF_HideLabelsMouseOverSetting>Hide labels until mouseover</ASF_HideLabelsMouseOverSetting>
