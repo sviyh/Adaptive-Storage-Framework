@@ -51,7 +51,12 @@ public static class InspectTabUtility
 		if (tabs.Count == 0)
 			return;
 
-		var tabAlreadyOpened = tabs.Exists(static tab => InspectPaneUtility.IsOpen(tab, (MainTabWindow_Inspect)MainButtonDefOf.Inspect.TabWindow));
+		// IsVisible means we only consider tabs that are actually visible; i.e. present in the tab list of the newly clicked selectable.
+		// This is relevant for example when you have a grouped storage building selected and click onto an individual, ungrouped one.
+		// In that scenario, without the IsVisible check, we'd return here and not display any tabs.
+		var tabAlreadyOpened = tabs.Exists(static tab => tab.IsVisible
+			&& InspectPaneUtility.IsOpen(tab, (MainTabWindow_Inspect)MainButtonDefOf.Inspect.TabWindow));
+
 		if (tabAlreadyOpened)
 			return;
 
