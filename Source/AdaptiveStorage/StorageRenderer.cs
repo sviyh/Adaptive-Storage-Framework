@@ -645,10 +645,8 @@ public class StorageRenderer : ITransformable.ITransformable
 		else
 		{
 			if (TryGetPrintDataOf(thing) is not { } printData)
-			{
 				printData = AddPrintData(thing,
-					UnityData.IsInMainThread ? itemGraphic.Worker.GetGraphicFor(thing, this) : null);
-			}
+					UnityData.IsInMainThread && !Multiplayer.API.MP.enabled ? itemGraphic.Worker.GetGraphicFor(thing, this) : null);
 
 			printData.Dirty = true;
 			AnyPrintDatasDirty = true;
